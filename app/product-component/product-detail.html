@@ -1,19 +1,8 @@
-<h1>{{title}}</h1>
-<h2>Product Details</h2>
-
-<ul class="products">
-    <li *ngFor="let p of products"
-    [class.selected]="p === selectedProduct"
-     (click) = "onSelect(p)">
-        <span class="badge">{{p.id}}</span> {{p.name}}
-    </li>
-</ul>
-
-<div *ngIf="selectedProduct">
-  <h2>{{selectedProduct.name}} details!</h2>
-  <div><label>id: </label>{{selectedProduct.id}}</div>
+<div *ngIf="product">
+  <h2>{{product.name}} details!</h2>
+  <div><label>ID: </label>{{product.id}}</div>
   <div>
-    <label>name: </label>
-    <input [(ngModel)]="selectedProduct.name" placeholder="name"/>
+    <label>NAME: </label>
+    <input [(ngModel)]="product.name" placeholder="name"/>
   </div>
 </div>

@@ -1,32 +1,36 @@
-import { Component } from '@angular/core';
-export class Product{
-  id:number;
-  name: string;
-}
-const PRODUCTS: Product [] = [
-  { id: 11, name: 'Broccoli' },
-  { id: 12, name: 'Potato' },
-  { id: 13, name: 'Olive Oil' },
-  { id: 14, name: 'Beans' },
-  { id: 15, name: 'Avocado' },
-  { id: 16, name: 'Banana' },
-  { id: 17, name: 'Salsa' },
-  { id: 18, name: 'Salad' },
-  { id: 19, name: 'Lassi' },
-  { id: 20, name: 'Tomato' }
-];
+import { Component, OnInit } from '@angular/core';
+
+import {Product} from './product';
+import {ProductService} from './product.service';
+
+
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app/product-component/product-detail.html'
+  templateUrl: './app/product-component/product-list.html',
+  providers: [ProductService]
 })
-export class AppComponent {
-  title = 'Product Tour';
-  products = PRODUCTS;
+
+export class AppComponent implements OnInit{
+
+title = 'Product Tour';
+  products : Product [];
   selectedProduct: Product;
 
+
+  constructor(private productService: ProductService){};
+
+getProducts():void {
+ this.productService.getProducts().then(products => this.products = products);;
+}
+
+ngOnInit():void{
+  this.getProducts();
+}
+  
   onSelect(product : Product): void {
     this.selectedProduct = product;
+    
   }
 
  }
