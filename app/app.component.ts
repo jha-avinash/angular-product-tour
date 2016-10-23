@@ -1,36 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-
-import {Product} from './product';
-import {ProductService} from './product.service';
-
+ import {Component} from '@angular/core';
+ import {RouterModule} from '@angular/router';
+// import {ProductsComponent} from './products.component';
 
 
-@Component({
-  selector: 'my-app',
-  templateUrl: './app/product-component/product-list.html',
-  providers: [ProductService]
-})
+ @Component({
+     selector: 'my-app',
+     template:`
+     <h1>{{title}}</h1>
+     <nav>
+     <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+     <a routerLink ="/products" routerLinkActive="active">Products</a>
+     </nav>
+     <router-outlet></router-outlet>
+    `,
+    styleUrls: [ './app/CSS/app.component.css' ]
+ })
 
-export class AppComponent implements OnInit{
-
-title = 'Product Tour';
-  products : Product [];
-  selectedProduct: Product;
-
-
-  constructor(private productService: ProductService){};
-
-getProducts():void {
- this.productService.getProducts().then(products => this.products = products);;
-}
-
-ngOnInit():void{
-  this.getProducts();
-}
-  
-  onSelect(product : Product): void {
-    this.selectedProduct = product;
-    
-  }
-
+ export class AppComponent{
+     title = 'Product Tour';
  }

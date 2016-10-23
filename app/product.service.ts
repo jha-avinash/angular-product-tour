@@ -10,4 +10,9 @@ export class ProductService{
     getProducts():Promise<Product[]>{
         return Promise.resolve(PRODUCTS);
     }
+
+    getProduct(id: number) : Promise <Product>{
+        return this.getProducts()
+        .then(products => products.find(product=> product.id ===id));
+    }
 }

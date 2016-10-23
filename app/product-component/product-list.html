@@ -1,4 +1,3 @@
-<h1>{{title}}</h1>
 <h2>Product Details</h2>
 
 <ul class="products">
@@ -8,4 +7,11 @@
         <span class="badge">{{p.id}}</span> {{p.name}}
     </li>
 </ul>
-<my-product-detail [product]="selectedProduct"></my-product-detail>
+<!--<my-product-detail [product]="selectedProduct"></my-product-detail>-->
+
+<div *ngIf="selectedProduct">
+  <h2>
+    {{selectedProduct.name | uppercase}} is my Product
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
